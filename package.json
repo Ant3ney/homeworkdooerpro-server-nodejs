@@ -11,5 +11,11 @@
     "url": "https://github.com/Ant3ney/homeworkdooerpro-server-nodejs.git"
   },
   "author": "Anthony Cavuoti",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "expres": "^0.0.5",
+    "openai": "^3.3.0"
+  }
 }
