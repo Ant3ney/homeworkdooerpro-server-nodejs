@@ -29,15 +29,26 @@ app.get("/", (req, res) => {
 });
 
 app.post("/generateEssay", async (req, res) => {
+  console.log("Generating essay.");
   const { notes } = req.body;
   const stringifiedPrompt = `Using the following notes, create an essay about the subject 
     matter of the notes. Only give back an essay based on the notes. Do not include anything 
     else.\n\n\\$notes below\\$\n${notes}`;
 
-  const completion = await openAIClient.createChatCompletion({
-    model: "gpt-4",
-    messages: [{ role: "user", content: stringifiedPrompt }],
-  });
+  let completion = null;
+  try {
+    completion = await openAIClient.createChatCompletion({
+      model: "gpt-4",
+      messages: [{ role: "user", content: stringifiedPrompt }],
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send({ message: "Error generating essay." });
+  }
+
+  if (!completion)
+    return res.status(500).send({ message: "Error generating essay." });
+
   console.log(completion.data.choices[0].message);
 
   res.status(200).send(completion.data.choices[0].message.content);
