@@ -9,7 +9,9 @@ let whitelist = [
   "",
   "http://localhost:3000",
   "https://homeworkdooerpro.com",
+  "homeworkdooerpro.com",
   "https://www.homeworkdooerpro.com",
+  "homeworkdooerpro.com",
 ];
 let corsOptions = {
   origin: function (origin, callback) {
@@ -53,6 +55,7 @@ app.post("/generateEssay", async (req, res) => {
 
   console.log(completion.data.choices[0].message); //prock update
 
+  console.log("Essay generated.");
   res.status(200).send(completion.data.choices[0].message.content);
 });
 
