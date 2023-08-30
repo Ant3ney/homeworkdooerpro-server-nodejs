@@ -51,7 +51,7 @@ app.post("/generateEssay", async (req, res) => {
     return res.status(500).send({ message: "Error generating essay." });
   }
 
-  console.log(completion.data.choices[0].message);
+  console.log(completion.data.choices[0].message); //prock update
 
   res.status(200).send(completion.data.choices[0].message.content);
 });
