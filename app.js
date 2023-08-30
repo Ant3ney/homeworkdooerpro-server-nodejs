@@ -46,8 +46,10 @@ app.post("/generateEssay", async (req, res) => {
     return res.status(500).send({ message: "Error generating essay." });
   }
 
-  if (!completion)
+  if (!completion) {
+    console.log("completion is:", completion);
     return res.status(500).send({ message: "Error generating essay." });
+  }
 
   console.log(completion.data.choices[0].message);
 
